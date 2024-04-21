@@ -52,6 +52,7 @@ public class Dogscript : MonoBehaviour
             text.SetActive(false);
         }
     }
+    //G‚ê‚Ä‚¢‚½‚ç
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -61,6 +62,7 @@ public class Dogscript : MonoBehaviour
             isDog = true;
         }
     }
+    //G‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -74,6 +76,7 @@ public class Dogscript : MonoBehaviour
             Destroy(this.gameObject, 7f);
         }
     }
+    //w’èƒL[‚ğ‰Ÿ‚µ‚½‚ç
     public bool TriggerCheck()
     {
         if (dogAttack)
