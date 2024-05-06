@@ -20,6 +20,8 @@ public class Dogscript : MonoBehaviour
     public static bool dogAttack;
     int n;
 
+    float dogDel = 3.0f;
+
     void Start()
     {
         isDog = false;
@@ -44,6 +46,7 @@ public class Dogscript : MonoBehaviour
                 anim.SetBool("run", true);
                 text.SetActive(false);
                 dogAttack = true;
+                StartCoroutine(DogDestroy());
                 n++;
             }
         }
@@ -52,6 +55,13 @@ public class Dogscript : MonoBehaviour
             text.SetActive(false);
         }
     }
+
+    IEnumerator DogDestroy()
+    {
+        yield return new WaitForSeconds(dogDel);
+        this.gameObject.SetActive(false);
+    }
+
     //êGÇÍÇƒÇ¢ÇΩÇÁ
     private void OnTriggerEnter2D(Collider2D other)
     {

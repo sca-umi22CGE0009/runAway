@@ -12,15 +12,20 @@ public class ItemScript : MonoBehaviour
     private float distance;
     [SerializeField] private GameObject charaA;
     [SerializeField] private GameObject charaB;
-    //[SerializeField] private GameObject chara;
+
     float chara_x;
     private int selectChara;
+    [SerializeField] float y = -3.05f;
 
-    [SerializeField] float y;
-    private void Charas()
+    [SerializeField] private float countTime = 3.5f;
+    float timer;
+
+    void Start()
     {
+        timer = countTime;
+        selectChara = SelectSceneManager.selectCharacter;
+
         //charaÇÃç¿ïWéÊìæ
-        //chara_x = chara.transform.position.x;
         switch (selectChara)
         {
             case 1:
@@ -33,29 +38,20 @@ public class ItemScript : MonoBehaviour
                 chara_x = charaA.transform.position.x;
                 break;
         }
-
-        //óêêî
-        distance = Random.Range(distanceMin, distanceMax);
-        number = Random.Range(0, itemPrefab.Length);
-        Instantiate(itemPrefab[number], new Vector3(distance + chara_x, y, 0), transform.rotation);
-    }
-
-    void Start()
-    {
-        selectChara = SelectSceneManager.selectCharacter;
-        StartCoroutine("DogCount");
     }
 
     void Update()
     {
-    }
+        timer -= Time.deltaTime;
 
-    IEnumerator DogCount()
-    {
-        for (int count = 0; count < 5; count++)
+        if (timer <= 0)
         {
-            yield return new WaitForSeconds(3.5f);
-            Charas();
+            //óêêî
+            distance = Random.Range(distanceMin, distanceMax);
+            number = Random.Range(0, itemPrefab.Length);
+            Instantiate(itemPrefab[number], new Vector3(distance + chara_x, y, 0), transform.rotation);
+            //èâä˙âª
+            timer = countTime;
         }
     }
 }
